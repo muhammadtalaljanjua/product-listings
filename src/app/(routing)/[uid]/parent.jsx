@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography, CircularProgress, Button } from "@mui/material";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../../components/ProductCard";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
