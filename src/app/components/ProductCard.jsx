@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
@@ -23,34 +25,28 @@ const ProductCard = ({ product }) => {
       {product.images.length > 0 && (
         <CardMedia
           component="img"
-          height="200"
+          height="250"
           image={product.images[0]}
-          alt={product.display_name || product.name}
+          alt={product.name}
+          sx={{
+            objectFit: "contain",
+            paddingY: 2,
+            borderBottom: "1px solid #e0e0e0",
+          }}
         />
       )}
-      <CardContent sx={{ flexGrow: 1 }}>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.display_name || product.name}
-        </Typography>
-
-        <Typography gutterBottom variant="body2" color="text.secondary">
-          <strong>SKU:</strong> {product.sku}
-        </Typography>
-
-        <Typography gutterBottom variant="body2" color="text.secondary">
-          <strong>Categories:</strong> {product.categories.join(", ")}
-        </Typography>
-
-        <Typography gutterBottom variant="body2" color="text.secondary">
-          <strong>Product Images:</strong> {product.images.length}
-        </Typography>
-
-        <Typography gutterBottom variant="body2" color="text.secondary">
-          <strong>Product Variations:</strong> {product.variations.length}
-        </Typography>
-
-        <Typography gutterBottom variant="body2" color="text.secondary">
-          <strong>Product Accessories:</strong> {product.accessories.length}
+      <CardContent sx={{ flexGrow: 1, paddingX: 0, paddingY: 2 }}>
+        <Typography
+          gutterBottom
+          sx={{
+            fontWeight: "600",
+            fontSize: "1.3rem",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {product.name}
         </Typography>
 
         <Button
@@ -60,10 +56,13 @@ const ProductCard = ({ product }) => {
           sx={{
             fontWeight: "500",
             textTransform: "capitalize",
-            backgroundColor: "#007bff",
-            color: "#fff",
+            backgroundColor: "#87BB40",
             borderRadius: 2,
-            mt: 2,
+            mt: 1,
+            "&:hover": {
+              transition: "0.3s ease-in-out",
+              backgroundColor: "#104578",
+            },
           }}
         >
           View Product
