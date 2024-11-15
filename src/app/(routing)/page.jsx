@@ -1,32 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Container, Grid, Typography, CircularProgress, Button } from "@mui/material";
+import { productsData } from "../products-data";
 import ProductCard from "../components/ProductCard";
 import FullPageBanner from "../components/Banner";
 
 export default function Home() {
+  const [visibleCount, setVisibleCount] = useState(12);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://pim-server.azurewebsites.net/providers/web", {
-          method: "GET",
-        });
-
-        const result = await response.json();
-        setProducts(result.products);
-      } catch (error) {
-        console.log("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
+    setProducts(productsData);
+    setLoading(false);
   }, []);
 
   const handleLoadMore = () => {
